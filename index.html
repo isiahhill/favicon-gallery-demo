@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favicon Gallery — copy-and-paste favicons, no files required</title>
+    <meta
+      name="description"
+      content="A gallery of copy-and-paste favicons. Click one and the entire <link> tag, data URI and all, lands on your clipboard. No files to host."
+    />
+    <link
+      rel="icon"
+      id="page-favicon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23111827'/><circle cx='50' cy='50' r='22' fill='%23fbbf24'/></svg>"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="glow" aria-hidden="true"></div>
+
+    <header class="masthead">
+      <div class="shell">
+        <p class="eyebrow">No files. No hosting. No build step.</p>
+        <h1>Favicon&nbsp;Gallery</h1>
+        <p class="lede">
+          Click any icon to copy a complete <code><link rel="icon"></code> tag with the
+          artwork inlined as a data URI. Paste it in your <code><head></code> and you are
+          done.
+        </p>
+
+        <div class="toolbar">
+          <div class="search">
+            <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.5-3.5" />
+            </svg>
+            <input
+              type="search"
+              id="search"
+              placeholder="Search 55 favicons…"
+              autocomplete="off"
+              aria-label="Search favicons"
+            />
+            <kbd class="search__kbd">/</kbd>
+          </div>
+          <button class="ghost-btn" id="theme-toggle" type="button" aria-pressed="false">
+            <span class="theme-toggle__icon" aria-hidden="true"></span>
+            <span id="theme-label">Dark</span>
+          </button>
+        </div>
+
+        <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section aria-labelledby="gallery-heading">
+        <h2 class="sr-only" id="gallery-heading">Favicon gallery</h2>
+        <div class="grid" id="grid"></div>
+        <p class="empty" id="empty" hidden>
+          Nothing matches that. <button class="linkish" id="clear-search" type="button">Clear the search</button>
+        </p>
+      </section>
+
+      <section class="builders" aria-labelledby="builder-heading">
+        <div class="section-head">
+          <h2 id="builder-heading">Roll your own</h2>
+          <p>Two of the easiest favicons to make from scratch. Tweak, then copy.</p>
+        </div>
+
+        <div class="builder-grid">
+          <div class="builder">
+            <div class="builder__preview">
+              <img id="emoji-preview" alt="Live preview of the emoji favicon" />
+            </div>
+            <div class="builder__body">
+              <h3>Emoji favicon</h3>
+              <p class="builder__hint">
+                One <code><text></code> element inside an SVG. Works in every modern browser.
+              </p>
+              <label class="field">
+                <span>Emoji</span>
+                <input id="emoji-input" type="text" value="🎯" maxlength="8" autocomplete="off" />
+              </label>
+              <div class="emoji-quick" id="emoji-quick"></div>
+              <button class="primary-btn" type="button" data-copy-builder="emoji">
+                Copy link tag
+              </button>
+            </div>
+          </div>
+
+          <div class="builder">
+            <div class="builder__preview">
+              <img id="mono-preview" alt="Live preview of the monogram favicon" />
+            </div>
+            <div class="builder__body">
+              <h3>Monogram</h3>
+              <p class="builder__hint">A letter on a shape. The workhorse favicon for side projects.</p>
+              <div class="field-row">
+                <label class="field">
+                  <span>Letter</span>
+                  <input id="mono-letter" type="text" value="A" maxlength="2" autocomplete="off" />
+                </label>
+                <label class="field">
+                  <span>Color</span>
+                  <input id="mono-color" type="color" value="#6366f1" />
+                </label>
+              </div>
+              <div class="field-row">
+                <label class="field">
+                  <span>Shape</span>
+                  <select id="mono-shape">
+                    <option value="rounded">Rounded</option>
+                    <option value="circle">Circle</option>
+                    <option value="square">Square</option>
+                  </select>
+                </label>
+                <label class="field">
+                  <span>Text color</span>
+                  <input id="mono-text" type="color" value="#ffffff" />
+                </label>
+              </div>
+              <button class="primary-btn" type="button" data-copy-builder="mono">
+                Copy link tag
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="shell">
+      <p>
+        Built as a CodePen. Favicons are data URIs — no assets to host, no build step, no
+        external dependencies.
+      </p>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    <div class="sheet-backdrop" id="sheet-backdrop" hidden></div>
+    <aside class="sheet" id="sheet" hidden aria-labelledby="sheet-title">
+      <button class="sheet__close" id="sheet-close" type="button" aria-label="Close">&times;</button>
+      <h2 id="sheet-title"></h2>
+      <div class="sheet__preview" id="sheet-preview"></div>
+      <pre class="sheet__code" id="sheet-code"></pre>
+      <button class="primary-btn" id="sheet-copy" type="button">Copy link tag</button>
+    </aside>
+
+    <script src="js/encode.js"></script>
+    <script src="js/favicons.js"></script>
+    <script src="js/pixel-icons.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
